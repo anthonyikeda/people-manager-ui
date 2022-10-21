@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { PersonComponent } from './person/person.component';
+import { PersonListComponent } from './person-list/person-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PersonComponent
+    PersonComponent,
+    PersonListComponent,
   ],
   imports: [
     BrowserModule,

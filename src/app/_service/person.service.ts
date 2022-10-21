@@ -1,0 +1,42 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map, Observable, switchMap } from 'rxjs';
+import { Person } from './person.types';
+import { environment as env } from '../../environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PersonService {
+
+  constructor(private http: HttpClient) { }
+
+  getPersons(): Observable<Person[]> {
+    const uri = `${env.person_api.uri}`;
+    return this.http.get<Person[]>(uri).pipe(
+      map( value => {
+        if (value.length == 0) {
+          return [];
+        } else {
+          return value;
+        }
+      })
+    );
+  }
+
+  getPersonById(personId: number): Observable<Person> {
+    const uri = `${env.person_api.uri}/${personId}`;
+    return this.http.get<Person>(uri);
+  }
+
+  createPerson(name: string, age: number): Observable<string> {
+    const uri = `${env.person_api.uri}?name=${name}&age=${age}`;
+    return this.http.post(uri, null, { observe: 'response'}).pipe(
+      map(response => {
+        let location = response.headers.get('location') || '';
+        return location;
+      })
+    );
+  }
+  
+}

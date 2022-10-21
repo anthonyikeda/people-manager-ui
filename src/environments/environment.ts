@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   person_api: {
-    uri: 'http://localhost:8080/api/person'
+    uri: 'http://localhost:4200/api/person'
   }
 };
 
