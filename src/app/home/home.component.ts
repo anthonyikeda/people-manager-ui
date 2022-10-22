@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Observable, of, switchMap } from 'rxjs';
 import { PersonService } from '../_service';
 import { Person } from '../_service/person.types';
 
@@ -23,12 +23,23 @@ export class HomeComponent implements OnInit {
       switchMap(params => {
         let person_id = Number(params.get("person_id"));
         return this.service.getPersonById(person_id);
+      }),
+    )
+    .pipe(
+      catchError(error => {
+        console.log(`Catching error: ${error}`);
+        return EMPTY;
       })
-    ).subscribe({
+    )
+    .subscribe({
       next: (p) => {
         this.person = p;
       },
-      error: (error) => console.log("Error loading person"),
+      error: (error) => {
+        console.log("Error loading person");
+        console.log(error);
+        console.log(typeof error);
+      },
       complete: () => {
         console.log('Loaded');
       }
@@ -40,4 +51,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  changeUser(personId: number): void {
+    this.service.getPersonById(personId).subscribe({
+      next: (person) => this.person = person,
+      error: (error) => {
+        console.log(error);
+        console.log(typeof error);
+      },
+      complete: () => console.log("refreshed user!")
+    });
+  }
 }

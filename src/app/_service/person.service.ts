@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { Person } from './person.types';
 import { environment as env } from '../../environments/environment';
 
@@ -26,7 +26,15 @@ export class PersonService {
 
   getPersonById(personId: number): Observable<Person> {
     const uri = `${env.person_api.uri}/${personId}`;
-    return this.http.get<Person>(uri);
+    
+    return this.http.get<Person>(uri).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  handleError(error: HttpErrorResponse) {
+    console.log(`Caught error ${error?.message}`);
+    return throwError(() => new Error("Something bad happened"))
   }
 
   createPerson(name: string, age: number): Observable<string> {
