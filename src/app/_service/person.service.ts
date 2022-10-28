@@ -27,14 +27,7 @@ export class PersonService {
   getPersonById(personId: number): Observable<Person> {
     const uri = `${env.person_api.uri}/${personId}`;
     
-    return this.http.get<Person>(uri).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  handleError(error: HttpErrorResponse) {
-    console.log(`Caught error ${error?.message}`);
-    return throwError(() => new Error("Something bad happened"))
+    return this.http.get<Person>(uri);
   }
 
   createPerson(name: string, age: number): Observable<string> {

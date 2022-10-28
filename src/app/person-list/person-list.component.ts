@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PersonService } from '../_service';
 import { Person } from '../_service/person.types';
+import { PersonDataSource } from './person.datasource';
 
 @Component({
   selector: 'app-person-list',
@@ -9,12 +11,13 @@ import { Person } from '../_service/person.types';
 })
 export class PersonListComponent implements OnInit {
 
-  @Input()
-  people = new BehaviorSubject<Person[]>([]);
+  personDataSource = new PersonDataSource(this.personService);
+  columnNames = ['Name', 'Age'];
 
-  constructor() { }
+  constructor(private personService: PersonService) { }
 
   ngOnInit(): void {
+    this.personDataSource.loadPersons();
   }
 
 }

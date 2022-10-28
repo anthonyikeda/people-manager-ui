@@ -1,5 +1,10 @@
 <p>home works!</p>
-<app-person [personId]="person.person_id" [name]="person.name" [age]="person.age"></app-person>
+<div *ngIf="person | async else userNotFound">
+    <app-person [person]="person"></app-person>
+</div>
+<ng-template #userNotFound>
+    User not found
+</ng-template>
 <br/>
 
-<app-person-list [people]="people"></app-person-list>
+<app-person-list></app-person-list>

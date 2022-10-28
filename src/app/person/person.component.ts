@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { PersonService } from '../_service';
 import { Person } from '../_service/person.types';
 
@@ -12,14 +12,8 @@ import { Person } from '../_service/person.types';
 })
 export class PersonComponent implements OnInit {
 
-  @Input("name")
-  personName = '';
-
-  @Input("age")
-  personAge = 0;
-
-  @Input("personId")
-  personId = 0;
+  @Input("person")
+  person: Observable<Person> = of();
 
   constructor() { }
 
