@@ -11,6 +11,7 @@ import { PersonListComponent } from './person-list/person-list.component';
 import { GlobalErrorHandler } from './_service';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MaterialModule } from './material/material.module';
     HomeComponent,
     PersonComponent,
     PersonListComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
