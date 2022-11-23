@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { PersonService } from '../_service';
+import { Person } from '../_service/person.types';
 
 @Component({
   selector: 'app-person-edit',
@@ -31,7 +32,7 @@ export class PersonEditComponent implements OnInit {
         })
       ).subscribe({
         next: (person) => {
-          this.personForm.get('personId')?.setValue(person.person_id);
+          this.personForm.get('personId')?.setValue(this.personId);
           this.personForm.get('name')?.setValue(person.name);
           this.personForm.get('age')?.setValue(person.age);
         },
@@ -41,4 +42,15 @@ export class PersonEditComponent implements OnInit {
       })
   }
 
+  saveUpdate(): void {
+    let person : Person = {
+      person_id: this.personForm.get("personId")?.value,
+      name: this.personForm.get("name")?.value,
+      age: this.personForm.get("age")?.value,
+    };
+
+    console.log(JSON.stringify(person));
+
+    this.service.updatePerson(person);
+  }
 }

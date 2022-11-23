@@ -11,6 +11,19 @@ export class PersonService {
 
   constructor(private http: HttpClient) { }
 
+  updatePerson(person: Person): void {
+    const uri = `${env.person_api.uri}/${person.person_id}`
+
+    this.http.put(uri, person).subscribe({
+      error: (error) => {
+        console.log( `Error updating person ${person.person_id}: error: ${error}`);
+      },
+      complete: () => {
+        console.log('Update sent!')
+      }
+    })
+  }
+
   getPersons(): Observable<Person[]> {
     const uri = `${env.person_api.uri}`;
     return this.http.get<Person[]>(uri).pipe(
