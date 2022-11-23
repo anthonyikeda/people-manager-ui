@@ -12,6 +12,8 @@ import { GlobalErrorHandler } from './_service';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { PersonEditComponent } from './person-edit/person-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,13 @@ import { WelcomeComponent } from './welcome/welcome.component';
     PersonComponent,
     PersonListComponent,
     WelcomeComponent,
+    PersonEditComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

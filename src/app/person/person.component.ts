@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { PersonService } from '../_service';
 import { Person } from '../_service/person.types';
@@ -18,6 +17,7 @@ export class PersonComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   
