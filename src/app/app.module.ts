@@ -14,6 +14,7 @@ import { MaterialModule } from './material/material.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PersonEditComponent } from './person-edit/person-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PersonListComponent,
     WelcomeComponent,
     PersonEditComponent,
+    ProjectListComponent,
   ],
   imports: [
     BrowserModule,

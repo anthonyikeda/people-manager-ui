@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   person_api: {
     uri: 'http://localhost:4200/api/person'
+  },
+  project_api: {
+    uri: 'http://localhost:4200/api/project'
   }
 };
 

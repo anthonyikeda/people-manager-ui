@@ -12,7 +12,7 @@ import { PersonDataSource } from './person.datasource';
 export class PersonListComponent implements OnInit {
 
   personDataSource = new PersonDataSource(this.personService);
-  columnNames = ['Name', 'Age'];
+  columnNames = ['Name', 'Age', 'Action'];
 
   constructor(private personService: PersonService) { }
 
@@ -20,4 +20,7 @@ export class PersonListComponent implements OnInit {
     this.personDataSource.loadPersons();
   }
 
+  editPerson(personId: number): void {
+    console.log(`Editing person ${personId}`);
+  }
 }

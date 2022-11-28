@@ -1,0 +1,31 @@
+<p>project-list works!</p>
+<table mat-table [dataSource]="projectDataSource">
+    <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef>Project Name</th>
+        <td mat-cell *matCellDef="let project">{{project.project_name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Code">
+        <th mat-header-cell *matHeaderCellDef>Project Code</th>
+        <td mat-cell *matCellDef="let project">{{project.project_code}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="City">
+        <th mat-header-cell *matHeaderCellDef>City</th>
+        <td mat-cell *matCellDef="let project">{{project.location.city}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Market">
+        <th mat-header-cell *matHeaderCellDef>Market</th>
+        <td mat-cell *matCellDef="let project">{{project.location.market}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="StartDate">
+        <th mat-header-cell *matHeaderCellDef>Market</th>
+        <td mat-cell *matCellDef="let project">{{project.project_start_date | date}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnNames; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnNames"></tr>
+
+</table>
